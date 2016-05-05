@@ -8,7 +8,6 @@ public class CarSystem {
 	int[] busType = { 10, 32 };
 	Moto[] moto;
 	Scanner input = new Scanner(System.in);
-	int sel = 0, count = 0;
 
 	public void welcome() {
 		System.out.println("***********************");
@@ -18,14 +17,15 @@ public class CarSystem {
 
 	public void askRentDays() {
 		System.out.println("请输入需要租车的数量：");
-		count = input.nextInt();
+		int count = input.nextInt();
 		moto = new Moto[count];
 		int[] days = new int[count];
 		for (int i = 0; i < moto.length; i++) {
+			System.out.println("请选择第"+(i+1)+"辆车");
 			System.out.println("请输入租赁天数：");
 			days[i] = input.nextInt();
 			System.out.println("请选择车的类别：1：轿车，2：客车");
-			sel = input.nextInt();
+			int sel = input.nextInt();
 
 			if (sel == 1) {
 				System.out.println("请选择车型：1，别克商务，2：宝马550i,3:别克林荫大道");
@@ -44,9 +44,9 @@ public class CarSystem {
 	}
 
 	public void show(int days[]) {
+		System.out.println("您选择的车信息如下：");
 		double totalRent = 0;
 		for (int i = 0; i < moto.length; i++) {
-			System.out.println("您选择的车信息如下：");
 			if (moto[i] instanceof Car) {
 				System.out.println("车型\t" + "车牌号\t" + "租用天数\t" + "日租金\t" + "总租金");
 				System.out.println(((Car) moto[i]).getCarType() + "\t" + moto[i].getCarNum() + "\t" + days[i] + "\t"
